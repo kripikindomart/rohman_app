@@ -27,22 +27,59 @@ class Instansi extends CI_Controller {
             $this->session->set_flashdata('error', validation_errors());
 			redirect('instansi');
         } else {
-        	$data = [
-				'nama' => $this->input->post('nama_toko'),
-				'nama_aplikasi' => $this->input->post('nama_aplikasi'),
-				'nama_pemilik' => $this->input->post('nama_pemilik'),
-				'no_telepon' => $this->input->post('no_telepon'),
-				'alamat' => $this->input->post('alamat'),
-				'logo' => $this->input->post('alamat'),
-			];
+        		
+        	if ($_FILES['logo']['name'] != null) {
+        		// the user id contain dot, so we must remove it
+				$file_name = $_FILES['logo']['name'];
+				$config['upload_path']          = FCPATH.'/assets/img/';
+				$config['allowed_types']        = 'gif|jpg|jpeg|png';
+				$config['file_name']            = $file_name;
+				$config['overwrite']            = true;
+				$config['max_size']             = 204800; // 1MB
+				$config['max_width']            = 1280;
+				$config['max_height']           = 1280;
 
-			if($update = $this->admin->update('data_instansi', 'id', 1, $data)){
-				$this->session->set_flashdata('success', 'Profil Instansi <strong>Berhasil</strong> Diubah!');
-				redirect('instansi');
-			} else {
-				$this->session->set_flashdata('error', 'Profil Instansi <strong>Gagal</strong> Diubah!');
-				redirect('instansi');
-			}
+				$this->load->library('upload', $config);
+				if (!$this->upload->do_upload('logo')) {
+					$this->session->set_flashdata('error', $this->upload->display_errors());
+					redirect('instansi');
+				} else {
+					$uploaded_data = $this->upload->data();
+					$data = [
+						'logo' => $uploaded_data['file_name'],
+						'nama' => $this->input->post('nama_toko'),
+						'nama_aplikasi' => $this->input->post('nama_aplikasi'),
+						'nama_pemilik' => $this->input->post('nama_pemilik'),
+						'no_telepon' => $this->input->post('no_telepon'),
+						'alamat' => $this->input->post('alamat'),
+					];
+				}
+
+				if($update = $this->admin->update('data_instansi', 'id', 1, $data)){
+					$this->session->set_flashdata('success', 'Profil Instansi <strong>Berhasil</strong> Diubah!');
+					redirect('instansi');
+				} else {
+					$this->session->set_flashdata('error', 'Profil Instansi <strong>Gagal</strong> Diubah!');
+					redirect('instansi');
+				}
+        	} else {
+        		$data = [
+					'nama' => $this->input->post('nama_toko'),
+					'nama_aplikasi' => $this->input->post('nama_aplikasi'),
+					'nama_pemilik' => $this->input->post('nama_pemilik'),
+					'no_telepon' => $this->input->post('no_telepon'),
+					'alamat' => $this->input->post('alamat'),
+				];
+
+				if($update = $this->admin->update('data_instansi', 'id', 1, $data)){
+					$this->session->set_flashdata('success', 'Profil Instansi <strong>Berhasil</strong> Diubah!');
+					redirect('instansi');
+				} else {
+					$this->session->set_flashdata('error', 'Profil Instansi <strong>Gagal</strong> Diubah!');
+					redirect('instansi');
+				}
+        	}
+        	
         }
 		
 	}

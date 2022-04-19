@@ -138,17 +138,33 @@ class Penjualan extends CI_Controller
             ];
            
             } else {
-                 $data_penjualan = [
-                    'kode_transaksi' => $this->input->post('no_terima'),
-                    'pelanggan_id'   => (empty($this->input->post('nama_supplier')) ? 1 : $this->input->post('nama_supplier') ),
-                    'user_id' => $this->input->post('id_petugas'),
-                    'tanggal_masuk' => $this->input->post('tanggal_masuk'),
-                    'note' => $note,
-                    'bayar' => $cash,
-                    'total' => $total,
-                    'pengirim' => $this->input->post('pengirim'),
-                    'kembalian'=> $change 
-                ];
+                if ($cash == 0) {
+                    $data_penjualan = [
+                        'kode_transaksi' => $this->input->post('no_terima'),
+                        'pelanggan_id'   => (empty($this->input->post('nama_supplier')) ? 1 : $this->input->post('nama_supplier') ),
+                        'user_id' => $this->input->post('id_petugas'),
+                        'tanggal_masuk' => $this->input->post('tanggal_masuk'),
+                        'note' => $note,
+                        'bayar' => $cash,
+                        'total' => $total,
+                        'pengirim' => $this->input->post('pengirim'),
+                        'kembalian'=> $change,
+                        'kurang_bayar'=> $total 
+                    ];
+                } else {
+                    $data_penjualan = [
+                        'kode_transaksi' => $this->input->post('no_terima'),
+                        'pelanggan_id'   => (empty($this->input->post('nama_supplier')) ? 1 : $this->input->post('nama_supplier') ),
+                        'user_id' => $this->input->post('id_petugas'),
+                        'tanggal_masuk' => $this->input->post('tanggal_masuk'),
+                        'note' => $note,
+                        'bayar' => $cash,
+                        'total' => $total,
+                        'pengirim' => $this->input->post('pengirim'),
+                        'kembalian'=> $change,
+                    ];
+                }
+                 
             }
 
             $this->load->library('ciqrcode');

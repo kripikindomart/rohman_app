@@ -20,7 +20,7 @@
 					<td width="50%">
 						<div class="row" >
 							<div class="col-md-4">
-								<img src="<?= base_url('assets/img/logo.png') ?>" class="img img-responsive" style="width: 100%;">
+								<img src="<?= $data_pt->logo == null ? base_url('assets/img/logo.png') : base_url('assets/img/').$data_pt->logo ?>" class="img img-responsive" style="width: 100%;">
 							</div>
 							<div class="col-md-8">
 								<strong><?= $data_pt->nama ?></strong><br>

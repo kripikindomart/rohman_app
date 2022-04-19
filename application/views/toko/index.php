@@ -1,9 +1,17 @@
+ <?php
+    $message = $this->session->flashdata('error');
+	if (isset($message)) {
+	    echo '<div class="alert alert-info">' . $message . '</div>';
+	     $this->session->unset_userdata('error');
+	}
+
+?>
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card shadow">
 			<div class="card-header"><strong>Isi Form Dibawah Ini!</strong></div>
 			<div class="card-body">
-				<form action="<?= base_url('instansi/proses_ubah') ?>" id="form-tambah" method="POST">
+				<form action="<?= base_url('instansi/proses_ubah') ?>" id="form-tambah" method="POST" enctype="multipart/form-data">
 					<input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
 					<div class="form-group">
 						<label for="nama_aplikasi"><strong>Nama Aplikasi : </strong></label>
@@ -24,6 +32,11 @@
 					<div class="form-group">
 						<label for="alamat"><strong>Alamat</strong></label>
 						<textarea readonly name="alamat" id="alamat" class="form-control" placeholder="Masukan Alamat" style="resize: none;"><?= $toko['alamat'] ?></textarea>
+					</div>
+
+					<div class="form-group">
+						<label for="logo"><strong>Logo</strong></label>
+						<input type="file" name="logo" id="logo" value="" class="form-control" >
 					</div>
 					<hr>
 					<div class="form-group">
