@@ -397,7 +397,7 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
-           
+           $('#dataTable').DataTable({});
              $( '.uang' ).mask('000.000.000.000', {reverse: true});
             $('tfoot').hide();
             let hal = '<?= $this->uri->segment(1); ?>';

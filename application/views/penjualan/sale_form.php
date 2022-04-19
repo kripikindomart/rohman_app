@@ -1,3 +1,12 @@
+ <?php
+    $message = $this->session->flashdata('error');
+    if (isset($message)) {
+        echo '<div class="alert alert-danger">' . $message . '</div>';
+         $this->session->unset_userdata('error');
+    }
+
+?>
+
 <div id="content" data-url="<?= base_url('penjualan') ?>">
     <?= form_open(base_url('penjualan/proses_tambah'),  [
         'id' => 'form_tambah',
@@ -366,7 +375,7 @@
             //Set column definition initialisation properties.
             "columnDefs": [
                 { 
-                    "targets": [ -1, 0 ], //last column
+                    "targets": [ -1, 0, 2 ], //last column
                     "orderable": false, //set not orderable
                     "searching": false,
                     "paging": false,

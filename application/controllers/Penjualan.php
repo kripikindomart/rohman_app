@@ -73,9 +73,10 @@ class Penjualan extends CI_Controller
             $kode_tambah++;
             $number = str_pad($kode_tambah, 5, '0', STR_PAD_LEFT);
             $data['kode_transaksi'] = $kode . $number;
-            if ($this->data_keranjang($data['kode_transaksi'])) {
-                $data['keranjang'] = $this->data_keranjang($data['kode_transaksi']);  
+            if ($this->data_keranjang($data['kode_transaksi']) == true) {
+                $this->session->set_flashdata('error', '<h3>Perhatian !</h3> Terdapat barang di Keranjang, pastikan barang tersebut bener bener barang yang masuk pada transaksi ini. !');
             }
+
             $this->template->load('templates/dashboard', 'penjualan/sale_form', $data);
         } else {
             $input = $this->input->post(null, true);
@@ -251,9 +252,9 @@ class Penjualan extends CI_Controller
         $this->db->join('satuan', 'satuan.id_satuan = barang.satuan_id', 'left');
         $transaksi = $this->db->where(['id_transaksi' => $id])->get();
         if ($transaksi->num_rows() > 0) {
-           return $keranjang = $transaksi->result();
+           return true;
         } else {
-            return $transaksi->num_rows();
+            return false;
         }
     }
 
