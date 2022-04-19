@@ -133,6 +133,7 @@ class Penjualan extends CI_Controller
                 'note' => $note,
                 'bayar' => $cash,
                 'total' => $total,
+                'pengirim' => $this->input->post('pengirim'),
                 'kurang_bayar'=> abs($change) 
             ];
            
@@ -145,6 +146,7 @@ class Penjualan extends CI_Controller
                     'note' => $note,
                     'bayar' => $cash,
                     'total' => $total,
+                    'pengirim' => $this->input->post('pengirim'),
                     'kembalian'=> $change 
                 ];
             }
