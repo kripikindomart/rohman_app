@@ -272,12 +272,12 @@ class Pelanggan extends CI_Controller
     public function delete($getId)
     {
         $id = encode_php_tags($getId);
-        if ($this->admin->delete('supplier', 'id_supplier', $id)) {
+        if ($this->admin->delete('pelanggan', 'id_pelanggan', $id)) {
             set_pesan('data berhasil dihapus.');
         } else {
             set_pesan('data gagal dihapus.', false);
         }
-        redirect('supplier');
+        redirect('pelanggan');
     }
 
     public function delete_barang_stok()

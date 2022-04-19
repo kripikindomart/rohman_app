@@ -27,7 +27,7 @@
 					</div>
 					<div class="form-group">
 						<label for="nama_toko"><strong>No Telepon : </strong></label>
-						<input type="number" name="no_telepon" id="no_telepon" value="<?= $toko['no_telepon'] ?>" placeholder="Masukan No Telepon" class="form-control" readonly>
+						<input type="text" name="no_telepon" id="no_telepon" value="<?= $toko['no_telepon'] ?>" placeholder="Masukan No Telepon" class="form-control" readonly>
 					</div>
 					<div class="form-group">
 						<label for="alamat"><strong>Alamat</strong></label>
