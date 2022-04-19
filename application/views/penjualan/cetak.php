@@ -77,7 +77,7 @@
 					<td>Qty</td>
 					<td>Satuan</td>
 					<td>Harga</td>
-					<td>Keterangan</td>
+					<td>Jumlah</td>
 				</tr>
 				<?php foreach ($data_item as $row): ?>
 					<tr>
@@ -91,10 +91,11 @@
 							<?= $row['nama_satuan'] ?>
 						</td>
 						<td>
-							<?= $row['harga_jual'] ?>
+							<?= rupiah($row['harga_jual']) ?>
 						</td>
 						<td>
-							
+							<?= rupiah($row['qty']*$row['harga_jual']) ?><br>
+						
 						</td>
 					</tr>
 
