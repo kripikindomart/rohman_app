@@ -33,6 +33,7 @@ class Instansi extends CI_Controller {
 				'nama_pemilik' => $this->input->post('nama_pemilik'),
 				'no_telepon' => $this->input->post('no_telepon'),
 				'alamat' => $this->input->post('alamat'),
+				'logo' => $this->input->post('alamat'),
 			];
 
 			if($update = $this->admin->update('data_instansi', 'id', 1, $data)){

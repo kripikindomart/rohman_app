@@ -61,6 +61,12 @@
         <div class="col-md-6">
             <div class="card shadow-sm border-bottom-primary">
                 <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Nama Pengirim Barang</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="pengirim" value=""  class="form-control">
+                        </div>
+                    </div>
 
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Barang</label>

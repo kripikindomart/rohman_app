@@ -21,7 +21,7 @@ class Penjualan extends CI_Controller
         $this->template->load('templates/dashboard', 'penjualan/data', $data);
     }
 
-    public function cetak($id)
+    public function cetak( $id, $cetak = null)
     {
         $data['title'] = "Detail Penjualan";
         $data['transaksi_id'] = $id;
@@ -32,7 +32,12 @@ class Penjualan extends CI_Controller
         // echo "<pre>";
         // print_r($data);
         // die();
+        if ($cetak == 'faktur') {
+            $this->load->view('penjualan/faktur', $data);
+        } else {
+
         $this->load->view('penjualan/cetak', $data);
+        }
 
     }
 
@@ -95,15 +100,16 @@ class Penjualan extends CI_Controller
         $note = $this->input->post("note");
 
         
-        if ($cash == 0 ) {
-            $json = [
-                'status' => false,
-                'message' => 'Kurang Bayar, anda kurang bayar sejumlah '.rupiah(abs($cash)) 
-            ];
-            echo json_encode($json);
-            return false;
+        // if ($cash == 0 ) {
+        //     $json = [
+        //         'status' => false,
+        //         'message' => 'Kurang Bayar, anda kurang bayar sejumlah '.rupiah(abs($cash)) 
+        //     ];
+        //     echo json_encode($json);
+        //     return false;
             
-        } else if($cash < $total) {
+        // } else 
+        if($cash < $total) {
             $json = [
                 'status' => false,
                 'message' => 'Kurang Bayar, anda kurang bayar sejumlah '.rupiah(abs($change)) 

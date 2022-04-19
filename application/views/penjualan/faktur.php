@@ -31,7 +31,7 @@
 						</div>
 						
 					</td>
-					<td align="right" width="50%"><span style="font-size: 26px;">SURAT JALAN</span></td>
+					<td align="right" width="50%"><span style="font-size: 26px;">FAKTUR PEMBELIAN</span></td>
 				</tr>
 			</table>
 			<hr>
@@ -75,8 +75,9 @@
 				<tr>
 					<td>Nama Barang</td>
 					<td>Qty</td>
-					<td>Keterangan</td>
-					
+					<td>Satuan</td>
+					<td>Harga</td>
+					<td>Jumlah</td>
 				</tr>
 				<?php foreach ($data_item as $row): ?>
 					<tr>
@@ -86,14 +87,21 @@
 						<td>
 							<?= $row['qty'] ?>
 						</td>
-						<td height="100px">
+						<td>
+							<?= $row['nama_satuan'] ?>
 						</td>
+						<td>
+							<?= rupiah($row['harga_jual']) ?>
+						</td>
+						<td>
+							<?= rupiah($row['qty']*$row['harga_jual']) ?><br>
 						
+						</td>
 					</tr>
 
 				<?php endforeach ?>
 				<tr>
-						<td colspan="3">
+						<td colspan="2">
 							<strong>Catatan : </strong><br>
 							<?= $data_penjualan->note ?>
 							<?php if ($data_penjualan->note == null): ?>
@@ -102,7 +110,43 @@
 								<br>
 							<?php endif ?>
 						</td>
-						
+						<td colspan="3">
+							<?php if ($data_penjualan->kurang_bayar != null ): ?>
+									<strong>Total Bayar : </strong> 
+									<?= rupiah($data_penjualan->total) ?>
+									<br>
+									<strong>Terbilang : </strong> 
+									<i> <?= ucwords(terbilang($data_penjualan->total)) ?> Rupiah </i>
+									<br>
+									<br>
+									<strong>Cash : </strong> 
+									<?= rupiah($data_penjualan->bayar) ?>
+									<br>
+									<strong>Kurang Bayar : </strong> 
+									<?= rupiah($data_penjualan->kurang_bayar) ?>
+									<br>
+									<strong>Terbilang : </strong> 
+									<i> <?= ucwords(terbilang($data_penjualan->kurang_bayar)) ?> Rupiah </i>
+									<br>
+									<br>
+									<?php if ($data_penjualan->total == null): ?>
+										<br>
+										<br>
+										<br>
+									<?php endif ?>
+								<?php else: ?>
+								<strong>Total Bayar : </strong> 
+								<?= rupiah($data_penjualan->total) ?>
+								<br>
+								<strong>Terbilang : </strong> 
+								<i> <?= ucwords(terbilang($data_penjualan->total)) ?> Rupiah </i>
+								<?php if ($data_penjualan->total == null): ?>
+									<br>
+									<br>
+									<br>
+								<?php endif ?>
+							<?php endif ?>
+						</td>
 					</tr>
 			</table>
 			<div class="tex-left" align="left" style="margin-bottom: 10px;">
@@ -126,7 +170,7 @@
 					</td>
 					
 					<td>
-						a.n <?= $data_penjualan->pengirim ?>
+						a.n <?= $data_penjualan->nama ?>
 						<div class="margin" style="margin-bottom: 50px;"></div>
 						
 					</td>

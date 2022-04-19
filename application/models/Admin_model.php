@@ -139,7 +139,7 @@ class Admin_model extends CI_Model
     {
 
         // $this->db->select('bm.kode_transaksi, bm.tanggal_masuk, dt.id_barang, dt.jumlah, dt.harga_satuan as harga_satuan_barang_masuk, s.nama_satuan, jenis.nama_jenis, u.nama, sp.nama as nama_pelanggan, b.nama_barang, bm.total');
-        $this->db->select('dt.id_barang, bm.kode_transaksi, bm.tanggal_masuk, u.nama, sp.nama as nama_pelanggan, sp.alamat, sp.no_hp, bm.total, s.nama_satuan, dt.jumlah as qty, jenis.nama_jenis, b.nama_barang, b.harga_satuan as harga_jual, bm.note, bm.kembalian, bm.kurang_bayar, bm.bayar');
+        $this->db->select('dt.id_barang,bm.pengirim, bm.kode_transaksi, bm.tanggal_masuk, u.nama, sp.nama as nama_pelanggan, sp.alamat, sp.no_hp, bm.total, s.nama_satuan, dt.jumlah as qty, jenis.nama_jenis, b.nama_barang, b.harga_satuan as harga_jual, bm.note, bm.kembalian, bm.kurang_bayar, bm.bayar');
         $this->db->distinct();
         $this->db->join('user u', 'bm.user_id = u.id_user');
         $this->db->join('detail_penjualan dt', 'dt.kode_transaksi = bm.kode_transaksi');

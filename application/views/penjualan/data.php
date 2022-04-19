@@ -50,6 +50,8 @@
 
                                 <a  href="<?= base_url('penjualan/cetak/') . $bm['kode_transaksi'] ?>"  class="btn btn-warning btn-circle btn-sm"><i class="fa fa-print"></i></a>
 
+                                <a  href="<?= base_url('penjualan/cetak/') . $bm['kode_transaksi'] ?>/faktur"  class="btn btn-success btn-circle btn-sm"><i class="fa fa-book"></i></a>
+
                                 <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('penjualan/delete/') . $bm['kode_transaksi'] ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
