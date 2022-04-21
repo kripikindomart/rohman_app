@@ -74,6 +74,7 @@
 			<table width="100%"  class="table table-bordered">
 				<tr>
 					<td>Nama Barang</td>
+					<td>Satuan</td>
 					<td>Qty</td>
 					<td>Keterangan</td>
 					
@@ -82,6 +83,9 @@
 					<tr>
 						<td>
 							<?= $row['id_barang'] ?> - <?= $row['nama_barang'] ?>
+						</td>
+						<td>
+							<?= $row['nama_satuan'] ?>
 						</td>
 						<td>
 							<?= $row['qty'] ?>
